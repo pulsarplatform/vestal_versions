@@ -4,7 +4,7 @@ module VestalVersions
     extend ActiveSupport::Concern
 
     # Adds the instance methods required to reset an object to a previous version.
-    
+
     # Similar to +revert_to!+, the +reset_to!+ method reverts an object to a previous version,
     # only instead of creating a new record in the version history, +reset_to!+ deletes all of
     # the version history that occurs after the version reverted to.

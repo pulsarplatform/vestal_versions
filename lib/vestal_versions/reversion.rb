@@ -4,7 +4,7 @@ module VestalVersions
     extend ActiveSupport::Concern
 
     # Provides the base instance methods required to revert a versioned instance.
-    
+
     # Returns the current version number for the versioned object.
     def version
       @version ||= last_version

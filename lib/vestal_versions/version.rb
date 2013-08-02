@@ -32,7 +32,7 @@ module VestalVersions
     def initial?
       number == 1
     end
-    
+
     # Returns the original version number that this version was.
     def original_number
       if reverted_from.nil?
@@ -45,15 +45,15 @@ module VestalVersions
 
     def restore!
       model = restore
-      
+
       if model
         model.save!
         destroy
       end
-      
+
       model
     end
-    
+
     def restore
       if tag == 'deleted'
         attrs = modifications
@@ -72,7 +72,7 @@ module VestalVersions
 
         model
       else
-        latest_version = self.class.find(:first, :conditions => {:versioned_id => versioned_id, :versioned_type => versioned_type, :tag => 'deleted'})
+        latest_version = self.class.where({:versioned_id => versioned_id, :versioned_type => versioned_type, :tag => 'deleted'}).first
         latest_version.nil? ? nil : latest_version.restore
       end
     end

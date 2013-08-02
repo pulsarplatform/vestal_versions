@@ -11,8 +11,7 @@ module VestalVersions
 
     # Methods added to versioned ActiveRecord::Base instances to enable versioning with additional
     # user information.
-    
-    
+
     private
     # Overrides the +version_attributes+ method to include user information passed into the
     # parent object, by way of a +updated_by+ attr_accessor.
