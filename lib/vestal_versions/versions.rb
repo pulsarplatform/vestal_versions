@@ -14,7 +14,7 @@ module VestalVersions
 
       condition = (from_number == to_number) ? to_number : Range.new(*[from_number, to_number].sort)
       where(:number => condition).
-        order("#{table_name}.#{connection.quote_column_name('number')} #{(from_number > to_number) ? 'DESC' : 'ASC'}").
+        order(number: (from_number > to_number) ? :desc : :asc).
           to_a
     end
 
