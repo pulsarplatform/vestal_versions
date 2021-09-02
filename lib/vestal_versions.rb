@@ -118,7 +118,7 @@ module VestalVersions
       include Deletion
 
       prepare_versioned_options(options)
-      has_many :versions, options, &block
+      has_many :versions, **options, &block
     end
   end
 end
