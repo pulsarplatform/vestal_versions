@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name    = 'vestal_versions'
-  gem.version = '1.2.4'
+  gem.version = '1.2.5'
 
   gem.authors     = ['Steve Richert', "James O'Kelly"]
   gem.email       = ['steve.richert@gmail.com', 'dreamr.okelly@gmail.com']
@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'activerecord', '>= 3.0', '< 7.1'
   gem.add_dependency 'activesupport', '>= 3.0', '< 7.1'
 
-  gem.files         = `git ls-files`.split($\)
-  gem.test_files    = gem.files.grep(/^spec/)
+  gem.files         = Dir['{*.md,Gemfile,*.gemspec,Rakefile,lib/**/*,gemfiles/**/*}']
+  gem.test_files    = Dir['spec/**/*']
   gem.require_paths = ['lib']
 end
