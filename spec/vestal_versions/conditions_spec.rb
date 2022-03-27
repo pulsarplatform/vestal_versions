@@ -9,14 +9,14 @@ describe VestalVersions::Conditions do
     end
 
     it 'is an array' do
-      User.vestal_versions_options[option].should be_a(Array)
+      expect(User.vestal_versions_options[option]).to be_a(Array)
       User.prepare_versioned_options(option => :true)
-      User.vestal_versions_options[option].should be_a(Array)
+      expect(User.vestal_versions_options[option]).to be_a(Array)
     end
 
     it 'has proc values' do
       User.prepare_versioned_options(option => :true)
-      User.vestal_versions_options[option].each{|i| i.should be_a(Proc) }
+      User.vestal_versions_options[option].each{|i| expect(i).to be_a(Proc) }
     end
   end
 

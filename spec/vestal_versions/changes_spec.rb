@@ -9,22 +9,22 @@ describe VestalVersions::Changes do
       user.update_attribute(:last_name, 'Jobs')
     end
 
-    it { should be_a(Hash) }
-    it { should_not be_empty }
+    it { is_expected.to be_a(Hash) }
+    it { is_expected.not_to be_empty }
 
     it 'has string keys' do
-      subject.keys.each{ |key| key.should be_a(String) }
+      subject.keys.each{ |key| expect(key).to be_a(String) }
     end
 
     it 'has two-element array values' do
       subject.values.each do |key|
-        key.should be_a(Array)
-        key.size.should == 2
+        expect(key).to be_a(Array)
+        expect(key.size).to eq(2)
       end
     end
 
     it 'has unique-element values' do
-      subject.values.each{ |v| v.uniq.should == v }
+      subject.values.each{ |v| expect(v.uniq).to eq(v) }
     end
 
     it "equals the model's changes" do
@@ -33,7 +33,7 @@ describe VestalVersions::Changes do
       user.save
       changes = user.versions.last.changes
 
-      model_changes.should == changes
+      expect(model_changes).to eq(changes)
     end
   end
 
@@ -44,28 +44,28 @@ describe VestalVersions::Changes do
     it 'properly appends other changes' do
       expected = {'first_name' => ['Steve', 'Catherine']}
 
-      changes.append_changes(other).should == expected
+      expect(changes.append_changes(other)).to eq(expected)
 
       changes.append_changes!(other)
-      changes.should == expected
+      expect(changes).to eq(expected)
     end
 
     it 'properly prepends other changes' do
       expected = {'first_name' => ['Catie', 'Stephen']}
 
-      changes.prepend_changes(other).should == expected
+      expect(changes.prepend_changes(other)).to eq(expected)
 
       changes.prepend_changes!(other)
-      changes.should == expected
+      expect(changes).to eq(expected)
     end
 
     it 'is reversible' do
       expected = {'first_name' => ['Stephen', 'Steve']}
 
-      changes.reverse_changes.should == expected
+      expect(changes.reverse_changes).to eq(expected)
 
       changes.reverse_changes!
-      changes.should == expected
+      expect(changes).to eq(expected)
     end
   end
 
@@ -84,7 +84,7 @@ describe VestalVersions::Changes do
     it 'is a hash' do
       1.upto(version) do |i|
         1.upto(version) do |j|
-          user.changes_between(i, j).should be_a(Hash)
+          expect(user.changes_between(i, j)).to be_a(Hash)
         end
       end
     end
@@ -92,7 +92,7 @@ describe VestalVersions::Changes do
     it 'has string keys' do
       1.upto(version) do |i|
         1.upto(version) do |j|
-          user.changes_between(i, j).keys.each{ |key| key.should be_a(String) }
+          user.changes_between(i, j).keys.each{ |key| expect(key).to be_a(String) }
         end
       end
     end
@@ -101,17 +101,17 @@ describe VestalVersions::Changes do
       1.upto(version) do |i|
         1.upto(version) do |j|
           user.changes_between(i, j).values.each do |value|
-            value.should be_a(Array)
-            value.size.should == 2
-            value.uniq.should == value
+            expect(value).to be_a(Array)
+            expect(value.size).to eq(2)
+            expect(value.uniq).to eq(value)
           end
         end
       end
     end
 
     it 'is empty between identical versions' do
-      user.changes_between(1, version).should be_empty
-      user.changes_between(version, 1).should be_empty
+      expect(user.changes_between(1, version)).to be_empty
+      expect(user.changes_between(version, 1)).to be_empty
     end
 
     it 'is should reverse with direction' do
@@ -119,15 +119,15 @@ describe VestalVersions::Changes do
         i.upto(version) do |j|
           up    = user.changes_between(i, j)
           down  = user.changes_between(j, i)
-          up.should == down.reverse_changes
+          expect(up).to eq(down.reverse_changes)
         end
       end
     end
 
     it 'is empty with invalid arguments' do
       1.upto(version) do |i|
-        user.changes_between(i, nil).should be_blank
-        user.changes_between(nil, i).should be_blank
+        expect(user.changes_between(i, nil)).to be_blank
+        expect(user.changes_between(nil, i)).to be_blank
       end
     end
   end

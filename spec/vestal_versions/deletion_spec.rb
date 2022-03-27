@@ -13,7 +13,7 @@ describe VestalVersions::Deletion do
     it "removes the original record" do
       subject.destroy
 
-      DeletedUser.find_by_id(subject.id).should be_nil
+      expect(DeletedUser.find_by_id(subject.id)).to be_nil
     end
 
     it "creates another version record" do
@@ -22,7 +22,7 @@ describe VestalVersions::Deletion do
 
     it "creates a version with a tag 'deleted'" do
       subject.destroy
-      VestalVersions::Version.last.tag.should == 'deleted'
+      expect(VestalVersions::Version.last.tag).to eq('deleted')
     end
 
   end
@@ -38,7 +38,7 @@ describe VestalVersions::Deletion do
       it "is able to restore the user record" do
         last_version.restore!
 
-        last_version.versioned.should == subject
+        expect(last_version.versioned).to eq(subject)
       end
 
       it "removes the last versioned entry" do
@@ -53,26 +53,26 @@ describe VestalVersions::Deletion do
           :versioned_type => last_version.versioned_type
         ).first
 
-        another_version.should_not == last_version
+        expect(another_version).not_to eq(last_version)
 
-        another_version.restore!.should == subject
+        expect(another_version.restore!).to eq(subject)
       end
 
       it "restores even if the schema has changed" do
         new_mods = last_version.modifications.merge(:old_column => 'old')
         last_version.update(:modifications => new_mods)
 
-        last_version.restore.should == subject
+        expect(last_version.restore).to eq(subject)
       end
     end
 
     context "restoring a record without a save" do
       it "does not save the DeletedUser when restoring" do
-        last_version.restore.should be_new_record
+        expect(last_version.restore).to be_new_record
       end
 
       it "restores the user object properly" do
-        last_version.restore.should == subject
+        expect(last_version.restore).to eq(subject)
       end
 
       it "does not decrement the versions table" do

@@ -1,3 +1,3 @@
-SimpleCov.minimum_coverage 59.25
+SimpleCov.minimum_coverage 59.10
 
 SimpleCov.start 'rails'

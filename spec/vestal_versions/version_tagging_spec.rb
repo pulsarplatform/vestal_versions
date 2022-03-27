@@ -12,17 +12,17 @@ describe VestalVersions::VersionTagging do
       tag_name = 'TAG'
       last_version = user.versions.last
 
-      last_version.tag.should_not == tag_name
+      expect(last_version.tag).not_to eq(tag_name)
       user.tag_version(tag_name)
-      last_version.reload.tag.should == tag_name
+      expect(last_version.reload.tag).to eq(tag_name)
     end
 
     it 'creates a version record for an initial version' do
       user.revert_to(1)
-      user.versions.at(1).should be_nil
+      expect(user.versions.at(1)).to be_nil
 
       user.tag_version('TAG')
-      user.versions.at(1).should_not be_nil
+      expect(user.versions.at(1)).not_to be_nil
     end
   end
 
@@ -33,7 +33,7 @@ describe VestalVersions::VersionTagging do
       user.tag_version('TAG')
     end
 
-    it { should be_tagged }
+    it { is_expected.to be_tagged }
   end
 
 end

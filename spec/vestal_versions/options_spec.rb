@@ -15,10 +15,10 @@ describe VestalVersions::Options do
     end
 
     it 'combines class-level and global configuration options' do
-      prepared_options.slice(:dependent, :class_name).should == {
+      expect(prepared_options.slice(:dependent, :class_name)).to eq({
         :dependent  => :destroy,
         :class_name => 'MyCustomVersion'
-      }
+      })
     end
 
   end
@@ -27,19 +27,19 @@ describe VestalVersions::Options do
     subject { User.prepare_versioned_options({}) }
 
     it 'defaults to "VestalVersions::Version" for :class_name' do
-      subject[:class_name].should == 'VestalVersions::Version'
+      expect(subject[:class_name]).to eq('VestalVersions::Version')
     end
 
     it 'defaults to :delete_all for :dependent' do
-      subject[:dependent].should == :delete_all
+      expect(subject[:dependent]).to eq(:delete_all)
     end
 
     it 'forces the :as option value to :versioned' do
-      subject[:as].should == :versioned
+      expect(subject[:as]).to eq(:versioned)
     end
 
     it 'defaults to [VestalVersions::Versions] for :extend' do
-      subject[:extend].should == [VestalVersions::Versions]
+      expect(subject[:extend]).to eq([VestalVersions::Versions])
     end
   end
 end

@@ -23,153 +23,153 @@ describe VestalVersions::Versions do
   it 'is searchable between two valid version values' do
     times.keys.each do |number|
       times.values.each do |time|
-        subject.versions.between(number, number).should be_a(Array)
-        subject.versions.between(number, time).should be_a(Array)
-        subject.versions.between(time, number).should be_a(Array)
-        subject.versions.between(time, time).should be_a(Array)
-        subject.versions.between(number, number).should_not be_empty
-        subject.versions.between(number, time).should_not be_empty
-        subject.versions.between(time, number).should_not be_empty
-        subject.versions.between(time, time).should_not be_empty
+        expect(subject.versions.between(number, number)).to be_a(Array)
+        expect(subject.versions.between(number, time)).to be_a(Array)
+        expect(subject.versions.between(time, number)).to be_a(Array)
+        expect(subject.versions.between(time, time)).to be_a(Array)
+        expect(subject.versions.between(number, number)).not_to be_empty
+        expect(subject.versions.between(number, time)).not_to be_empty
+        expect(subject.versions.between(time, number)).not_to be_empty
+        expect(subject.versions.between(time, time)).not_to be_empty
       end
     end
   end
 
   it 'returns an empty array when searching between a valid and an invalid version value' do
     times.each do |number, time|
-      subject.versions.between(number, nil).should == []
-      subject.versions.between(time, nil).should == []
-      subject.versions.between(nil, number).should == []
-      subject.versions.between(nil, time).should == []
+      expect(subject.versions.between(number, nil)).to eq([])
+      expect(subject.versions.between(time, nil)).to eq([])
+      expect(subject.versions.between(nil, number)).to eq([])
+      expect(subject.versions.between(nil, time)).to eq([])
     end
   end
 
   it 'returns an empty array when searching between two invalid version values' do
-    subject.versions.between(nil, nil).should == []
+    expect(subject.versions.between(nil, nil)).to eq([])
   end
 
   it 'is searchable before a valid version value' do
     times.sort.each_with_index do |(number, time), i|
-      subject.versions.before(number).size.should == i
-      subject.versions.before(time).size.should == i
+      expect(subject.versions.before(number).size).to eq(i)
+      expect(subject.versions.before(time).size).to eq(i)
     end
   end
 
   it 'returns an empty array when searching before an invalid version value' do
-    subject.versions.before(nil).should == []
+    expect(subject.versions.before(nil)).to eq([])
   end
 
   it 'is searchable after a valid version value' do
     times.sort.reverse.each_with_index do |(number, time), i|
-      subject.versions.after(number).size.should == i
-      subject.versions.after(time).size.should == i
+      expect(subject.versions.after(number).size).to eq(i)
+      expect(subject.versions.after(time).size).to eq(i)
     end
   end
 
   it 'returns an empty array when searching after an invalid version value' do
-    subject.versions.after(nil).should == []
+    expect(subject.versions.after(nil)).to eq([])
   end
 
   it 'is fetchable by version number' do
     times.keys.each do |number|
-      subject.versions.at(number).should be_a(VestalVersions::Version)
-      subject.versions.at(number).number.should == number
+      expect(subject.versions.at(number)).to be_a(VestalVersions::Version)
+      expect(subject.versions.at(number).number).to eq(number)
     end
   end
 
   it 'is fetchable by tag' do
     times.keys.map{|n| [n, n.to_s] }.each do |number, tag|
-      subject.versions.at(tag).should be_a(VestalVersions::Version)
-      subject.versions.at(tag).number.should == number
+      expect(subject.versions.at(tag)).to be_a(VestalVersions::Version)
+      expect(subject.versions.at(tag).number).to eq(number)
     end
   end
 
   it "is fetchable by the exact time of a version's creation" do
     times.each do |number, time|
-      subject.versions.at(time).should be_a(VestalVersions::Version)
-      subject.versions.at(time).number.should == number
+      expect(subject.versions.at(time)).to be_a(VestalVersions::Version)
+      expect(subject.versions.at(time).number).to eq(number)
     end
   end
 
   it "is fetchable by any time after the model's creation" do
     times.each do |number, time|
-      subject.versions.at(time + 30.minutes).should be_a(VestalVersions::Version)
-      subject.versions.at(time + 30.minutes).number.should == number
+      expect(subject.versions.at(time + 30.minutes)).to be_a(VestalVersions::Version)
+      expect(subject.versions.at(time + 30.minutes).number).to eq(number)
     end
   end
 
   it "returns nil when fetching a time before the model's creation" do
     creation = times.values.min
-    subject.versions.at(creation - 1.second).should be_nil
+    expect(subject.versions.at(creation - 1.second)).to be_nil
   end
 
   it 'is fetchable by an association extension method' do
-    subject.versions.at(:first).should be_a(VestalVersions::Version)
-    subject.versions.at(:last).should be_a(VestalVersions::Version)
-    subject.versions.at(:first).number.should == times.keys.min
-    subject.versions.at(:last).number.should == times.keys.max
+    expect(subject.versions.at(:first)).to be_a(VestalVersions::Version)
+    expect(subject.versions.at(:last)).to be_a(VestalVersions::Version)
+    expect(subject.versions.at(:first).number).to eq(times.keys.min)
+    expect(subject.versions.at(:last).number).to eq(times.keys.max)
   end
 
   it 'is fetchable by a version object' do
     times.keys.each do |number|
       version = subject.versions.at(number)
 
-      subject.versions.at(version).should be_a(VestalVersions::Version)
-      subject.versions.at(version).number.should == number
+      expect(subject.versions.at(version)).to be_a(VestalVersions::Version)
+      expect(subject.versions.at(version).number).to eq(number)
     end
   end
 
   it 'returns nil when fetching an invalid version value' do
-    subject.versions.at(nil).should be_nil
+    expect(subject.versions.at(nil)).to be_nil
   end
 
   it 'provides a version number for any given numeric version value' do
     times.keys.each do |number|
-      subject.versions.number_at(number).should be_a(Integer)
-      subject.versions.number_at(number + 0.5).should be_a(Integer)
-      subject.versions.number_at(number).should == subject.versions.number_at(number + 0.5)
+      expect(subject.versions.number_at(number)).to be_a(Integer)
+      expect(subject.versions.number_at(number + 0.5)).to be_a(Integer)
+      expect(subject.versions.number_at(number)).to eq(subject.versions.number_at(number + 0.5))
     end
   end
 
   it 'provides a version number for a valid tag' do
     times.keys.map{|n| [n, n.to_s] }.each do |number, tag|
-      subject.versions.number_at(tag).should be_a(Integer)
-      subject.versions.number_at(tag).should == number
+      expect(subject.versions.number_at(tag)).to be_a(Integer)
+      expect(subject.versions.number_at(tag)).to eq(number)
     end
   end
 
   it 'returns nil when providing a version number for an invalid tag' do
-    subject.versions.number_at('INVALID').should be_nil
+    expect(subject.versions.number_at('INVALID')).to be_nil
   end
 
   it 'provides a version number of a version corresponding to an association extension method' do
-    subject.versions.at(:first).should be_a(VestalVersions::Version)
-    subject.versions.at(:last).should be_a(VestalVersions::Version)
-    subject.versions.number_at(:first).should == times.keys.min
-    subject.versions.number_at(:last).should == times.keys.max
+    expect(subject.versions.at(:first)).to be_a(VestalVersions::Version)
+    expect(subject.versions.at(:last)).to be_a(VestalVersions::Version)
+    expect(subject.versions.number_at(:first)).to eq(times.keys.min)
+    expect(subject.versions.number_at(:last)).to eq(times.keys.max)
   end
 
   it 'returns nil when providing a version number for an invalid association extension method' do
-    subject.versions.number_at(:INVALID).should be_nil
+    expect(subject.versions.number_at(:INVALID)).to be_nil
   end
 
   it "provides a version number for any time after the model's creation" do
     times.each do |number, time|
-      subject.versions.number_at(time + 30.minutes).should be_a(Integer)
-      subject.versions.number_at(time + 30.minutes).should == number
+      expect(subject.versions.number_at(time + 30.minutes)).to be_a(Integer)
+      expect(subject.versions.number_at(time + 30.minutes)).to eq(number)
     end
   end
 
   it "provides a version number of 1 for a time before the model's creation" do
     creation = times.values.min
-    subject.versions.number_at(creation - 1.second).should == 1
+    expect(subject.versions.number_at(creation - 1.second)).to eq(1)
   end
 
   it 'provides a version number for a given version object' do
     times.keys.each do |number|
       version = subject.versions.at(number)
 
-      subject.versions.number_at(version).should == number
+      expect(subject.versions.number_at(version)).to eq(number)
     end
   end
 
