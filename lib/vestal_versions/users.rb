@@ -6,7 +6,7 @@ module VestalVersions
 
     included do
       attr_accessor :updated_by
-      Version.class_eval{
+      Version.class_eval do
         belongs_to :user, :polymorphic => true
 
         # Overrides the +user+ method created by the polymorphic +belongs_to+ user association. If
@@ -26,7 +26,7 @@ module VestalVersions
           else self.user_name = value
           end
         end
-      }
+      end
     end
 
     # Methods added to versioned ActiveRecord::Base instances to enable versioning with additional
