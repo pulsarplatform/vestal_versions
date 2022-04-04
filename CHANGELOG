@@ -1,6 +1,10 @@
-Version 1.2.4
+Version 1.2.5
 
 * Avoid git errors during runtime if git is not available
+
+Version 1.2.4
+
+* Add support for ruby up to 3 and rails up to 7
 
 Version 1.2.3
 
@@ -8,7 +12,6 @@ Version 1.2.3
 * Added a new class level 'skip_version' that works on one model at
 a time
 * Internal refactoring and tidying up by Alex Crichton
-
 
 Version 1.2.2
 
@@ -18,18 +21,17 @@ Version 1.2.2
 initial create
 * A couple internal refactors to remove alias_method_chain calls
 
-
 Version 1.2.1
 
- * Soft Delete tracking including
- * Adding revert tracking (version table change)
- * Adding 'original_number' to the version class
+* Soft Delete tracking including
+* Adding revert tracking (version table change)
+* Adding 'original_number' to the version class
 
 Version 1.1.0
 
- * Ruby 1.9.2 compatibility
- * Initial Rails 3 compatibility
+* Ruby 1.9.2 compatibility
+* Initial Rails 3 compatibility
 
 Version 1.0.2
 
- * Original Version import from Laserlemon - thanks!
+* Original Version import from Laserlemon - thanks!

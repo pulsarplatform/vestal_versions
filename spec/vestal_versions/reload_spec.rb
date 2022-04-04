@@ -11,8 +11,8 @@ describe VestalVersions::Reload do
   end
 
   it 'resets the version number to the most recent version' do
-    user.version.should_not == @last_version
+    expect(user.version).not_to eq(@last_version)
     user.reload
-    user.version.should == @last_version
+    expect(user.version).to eq(@last_version)
   end
 end

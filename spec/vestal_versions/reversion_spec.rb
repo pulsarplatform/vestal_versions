@@ -25,7 +25,7 @@ describe VestalVersions::Reversion do
   end
 
   it 'returns the new version number' do
-    subject.revert_to(first_version).should == first_version
+    expect(subject.revert_to(first_version)).to eq(first_version)
   end
 
   it 'changes the version number when saved' do
@@ -40,20 +40,20 @@ describe VestalVersions::Reversion do
 
   it 'is able to target a version number' do
     subject.revert_to(1)
-    subject.version.should == 1
+    expect(subject.version).to eq(1)
   end
 
   it 'is able to target a date and time' do
     times.each do |version, time|
       subject.revert_to(time + 1.second)
-      subject.version.should == version
+      expect(subject.version).to eq(version)
     end
   end
 
   it 'is able to target a version object' do
     subject.versions.each do |version|
       subject.revert_to(version)
-      subject.version.should == version.number
+      expect(subject.version).to eq(version.number)
     end
   end
 
@@ -62,42 +62,42 @@ describe VestalVersions::Reversion do
 
     attributes.each do |version, attributes|
       subject.revert_to!(version)
-      subject.attributes.except(*except).should == attributes.except(*except)
+      expect(subject.attributes.except(*except)).to eq(attributes.except(*except))
     end
   end
 
   it "stores the reverted_from pointing to the previous version" do
     subject.revert_to!(1)
-    subject.versions.last.reverted_from.should == 1
+    expect(subject.versions.last.reverted_from).to eq(1)
   end
 
   it "does not store the reverted_from for subsequent saves" do
     subject.revert_to!(1)
-    subject.update_attributes(:name => 'Bill Gates')
-    subject.versions.last.reverted_from.should be_nil
+    subject.update(:name => 'Bill Gates')
+    expect(subject.versions.last.reverted_from).to be_nil
   end
 
   it "stores the reverted_from pointing to the version it was reverted from when save is called later" do
     subject.revert_to(1)
     subject.name = "Reverted"
     subject.save
-    subject.versions.last.reverted_from.should == 1
+    expect(subject.versions.last.reverted_from).to eq(1)
   end
 
   it "does not store the reverted_from for subsequent saves when the revert_to-save is called later" do
     subject.revert_to(1)
     subject.name = "Reverted"
     subject.save
-    subject.update_attributes(:name => 'Bill Gates')
-    subject.versions.last.reverted_from.should be_nil
+    subject.update(:name => 'Bill Gates')
+    expect(subject.versions.last.reverted_from).to be_nil
   end
 
   it "clears the reverted_from if the model is reloaded after a revert_to without a save" do
     subject.revert_to(1)
     subject.reload
-    subject.update_attributes(:name => 'Bill Gates')
+    subject.update(:name => 'Bill Gates')
 
-    subject.versions.last.reverted_from.should be_nil
+    expect(subject.versions.last.reverted_from).to be_nil
   end
 
 end

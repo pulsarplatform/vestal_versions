@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rake', '>= 0.9'
-gem 'rspec', '~> 2.0'
-gem 'sqlite3', '~> 1.0'
-
+gem 'appraisal'
+gem 'rake'
+gem 'rspec'
+gem 'rspec-its'
+gem 'simplecov', require: false
+gem 'sqlite3'

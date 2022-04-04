@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = 'vestal_versions'
-  s.version = '1.2.4'
+  s.version = '1.2.5'
 
   s.authors     = ['Steve Richert', "James O'Kelly"]
   s.email       = ['steve.richert@gmail.com', 'dreamr.okelly@gmail.com']
@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.summary     = s.description
   s.homepage    = 'http://github.com/laserlemon/vestal_versions'
 
-  s.add_dependency 'activerecord', '~> 3.0'
-  s.add_dependency 'activesupport', '~> 3.0'
+  s.add_dependency 'activerecord', '>= 5.2', '< 7.1'
+  s.add_dependency 'activesupport', '>= 5.2', '< 7.1'
 
   s.files         = Dir['{*.md,Gemfile,*.gemspec,Rakefile,lib/**/*,gemfiles/**/*}']
   s.test_files    = Dir['spec/**/*']

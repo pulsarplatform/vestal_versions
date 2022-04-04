@@ -1,5 +1,9 @@
 require 'bundler'
+
 Bundler.require
+
+require 'simplecov' if ENV['COVERAGE'] != 'off'
+
 require 'rspec/core'
 
 RSpec.configure do |c|

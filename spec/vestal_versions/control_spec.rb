@@ -11,7 +11,7 @@ describe VestalVersions::Control do
     it 'creates one version with a model update' do
       user.send(method){ user.update_attribute(:last_name, 'Jobs') }
 
-      user.versions.count.should == @count
+      expect(user.versions.count).to eq(@count)
     end
 
     it 'creates one version with multiple model updates' do
@@ -21,7 +21,7 @@ describe VestalVersions::Control do
         user.update_attribute(:first_name, 'Steve')
       end
 
-      user.versions.count.should == @count
+      expect(user.versions.count).to eq(@count)
     end
 
   end
@@ -30,7 +30,7 @@ describe VestalVersions::Control do
     it 'creates one version with a model update' do
       user.send(method){ user.update_attribute(:last_name, 'Jobs') }
 
-      user.versions.count.should == @count + 1
+      expect(user.versions.count).to eq(@count + 1)
     end
 
     it 'creates one version with multiple model updates' do
@@ -40,7 +40,7 @@ describe VestalVersions::Control do
         user.update_attribute(:first_name, 'Steve')
       end
 
-      user.versions.count.should == @count + 1
+      expect(user.versions.count).to eq(@count + 1)
     end
 
   end
@@ -65,8 +65,8 @@ describe VestalVersions::Control do
         other_user.update_attribute(:last_name, 'Jobs')
         other_user.update_attribute(:first_name, 'Steve')
       end
-      user.versions.count.should == @count
-      other_user.versions.count.should == @other_user_count
+      expect(user.versions.count).to eq(@count)
+      expect(other_user.versions.count).to eq(@other_user_count)
     end
 
   end
@@ -95,9 +95,9 @@ describe VestalVersions::Control do
 
         user.append_version{ user.update_attribute(:last_name, 'Jobs') }
 
-        other_last_version = user.versions(true).last
-        other_last_version.id.should == original_id
-        other_last_version.attributes.should_not == original_attrs
+        other_last_version = user.versions.reload.last
+        expect(other_last_version.id).to eq(original_id)
+        expect(other_last_version.attributes).not_to eq(original_attrs)
       end
 
       it "updates the last version with multiple updates" do
@@ -110,9 +110,9 @@ describe VestalVersions::Control do
           user.update_attribute(:first_name, 'Steve')
         end
 
-        other_last_version = user.versions(true).last
-        other_last_version.id.should == original_id
-        other_last_version.attributes.should_not == original_attrs
+        other_last_version = user.versions.reload.last
+        expect(other_last_version.id).to eq(original_id)
+        expect(other_last_version.attributes).not_to eq(original_attrs)
       end
 
     end

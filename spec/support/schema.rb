@@ -3,12 +3,12 @@ ActiveRecord::Base.establish_connection(
   :database => File.expand_path('../../test.db', __FILE__)
 )
 
-class CreateSchema < ActiveRecord::Migration
+class CreateSchema < ActiveRecord::Migration[4.2]
   def self.up
     create_table :users, :force => true do |t|
       t.string :first_name
       t.string :last_name
-      t.timestamps
+      t.timestamps(null: false)
     end
 
     create_table :versions, :force => true do |t|
@@ -19,7 +19,7 @@ class CreateSchema < ActiveRecord::Migration
       t.integer :number
       t.integer :reverted_from
       t.string :tag
-      t.timestamps
+      t.timestamps(null: false)
     end
   end
 end

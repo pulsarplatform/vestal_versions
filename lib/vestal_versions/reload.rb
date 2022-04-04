@@ -5,7 +5,7 @@ module VestalVersions
     extend ActiveSupport::Concern
 
     # Adds instance methods into ActiveRecord::Base to tap into the +reload+ method.
-    
+
     # Overrides ActiveRecord::Base#reload, resetting the instance-variable-cached version number
     # before performing the original +reload+ method.
     def reload(*args)

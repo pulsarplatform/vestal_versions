@@ -22,14 +22,14 @@ describe VestalVersions::Reset do
   it "properly reverts the model's attributes" do
     versions.reverse.each_with_index do |version, i|
       subject.reset_to!(version)
-      subject.name.should == names.reverse[i]
+      expect(subject.name).to eq(names.reverse[i])
     end
   end
 
   it 'dissociates all versions after the target' do
     versions.reverse.each do |version|
       subject.reset_to!(version)
-      subject.versions(true).after(version).count.should == 0
+      expect(subject.versions.reload.after(version).count).to eq(0)
     end
   end
 
