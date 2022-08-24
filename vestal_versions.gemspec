@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.summary     = s.description
   s.homepage    = 'http://github.com/laserlemon/vestal_versions'
 
-  s.add_dependency 'activerecord', '>= 5.2', '< 7.1'
-  s.add_dependency 'activesupport', '>= 5.2', '< 7.1'
+  s.add_dependency 'activerecord', '>= 6.1', '< 7.1'
+  s.add_dependency 'activesupport', '>= 6.1', '< 7.1'
 
   s.files         = Dir['{*.md,Gemfile,*.gemspec,Rakefile,lib/**/*,gemfiles/**/*}']
   s.test_files    = Dir['spec/**/*']
