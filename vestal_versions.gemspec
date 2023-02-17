@@ -1,6 +1,8 @@
+require_relative './lib/vestal_versions/version_num'
+
 Gem::Specification.new do |s|
   s.name    = 'vestal_versions'
-  s.version = '1.2.5'
+  s.version = VestalVersions::VERSION
 
   s.authors     = ['Steve Richert', "James O'Kelly"]
   s.email       = ['steve.richert@gmail.com', 'dreamr.okelly@gmail.com']

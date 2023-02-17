@@ -3,7 +3,7 @@ name: release
 on:
   push:
     branches:
-      - develop
+      - master
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
           # Should breaking changes before 1.0.0 produce minor bumps?
           bump-minor-pre-major: true
           # Path to our version file to increment
-          version-file: "lib/vestal_versions/version.rb"
+          version-file: "lib/vestal_versions/version_num.rb"
       # Checkout code if release was created
       - uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
