@@ -12,6 +12,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '>= 6.1', '< 7.1'
 
   s.files         = Dir['{*.md,Gemfile,*.gemspec,Rakefile,lib/**/*,gemfiles/**/*}']
-  s.test_files    = Dir['spec/**/*']
   s.require_paths = ['lib']
 end
