@@ -6,4 +6,8 @@ appraise 'rails70' do
   gem 'activesupport', '~> 7.0.1'
 end
 
+appraise 'rails71' do
+  gem 'activesupport', '~> 7.1.0'
+end
+
 # vim:filetype=ruby

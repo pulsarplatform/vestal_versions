@@ -6,6 +6,12 @@ require 'simplecov' if ENV['COVERAGE'] != 'off'
 
 require 'rspec/core'
 
+if ActiveRecord::VERSION::MAJOR == 6
+  ActiveRecord::Base.yaml_column_permitted_classes += [Time]
+else
+  ActiveRecord.yaml_column_permitted_classes += [Time]
+end
+
 RSpec.configure do |c|
   c.before(:suite) do
     CreateSchema.suppress_messages{ CreateSchema.migrate(:up) }
