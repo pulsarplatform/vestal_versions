@@ -18,7 +18,12 @@ module VestalVersions
     def changes
       self[:modifications]
     end
-    serialize :modifications, Hash
+
+    if ActiveRecord.gem_version >= Gem::Version.new("7.1")
+      serialize :modifications, type: Hash
+    else
+      serialize :modifications, Hash
+    end
 
     # In conjunction with the included Comparable module, allows comparison of version records
     # based on their corresponding version numbers, creation timestamps and IDs.

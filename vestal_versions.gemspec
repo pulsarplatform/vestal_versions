@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.summary     = s.description
   s.homepage    = 'http://github.com/laserlemon/vestal_versions'
 
-  s.add_dependency 'activerecord', '>= 6.1', '< 7.1'
-  s.add_dependency 'activesupport', '>= 6.1', '< 7.1'
+  s.add_dependency 'activerecord', '>= 6.1', '< 7.2'
+  s.add_dependency 'activesupport', '>= 6.1', '< 7.2'
 
   s.files         = Dir['{*.md,Gemfile,*.gemspec,Rakefile,lib/**/*,gemfiles/**/*}']
   s.require_paths = ['lib']
