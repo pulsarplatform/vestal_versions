@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/blake-education/vestal_versions/compare/v1.3.0...v1.4.0) (2023-10-05)
+
+
+### Features
+
+* add support for Rails 7.1 ([0495123](https://github.com/blake-education/vestal_versions/commit/049512364ca5db0ce5b06bebdbe2656f03988b29))
+
 ## [1.3.0](https://github.com/blake-education/vestal_versions/compare/v1.0.2...v1.3.0) (2023-02-17)
 
 
