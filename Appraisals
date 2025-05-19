@@ -14,4 +14,9 @@ appraise 'rails72' do
   gem 'activesupport', '~> 7.2.0'
 end
 
+appraise 'rails80' do
+  gem 'activesupport', '~> 8.0.0'
+  gem 'sqlite3', '>= 2.1'
+end
+
 # vim:filetype=ruby
