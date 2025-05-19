@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "appraisal"
+gem "logger"
 gem "rake"
 gem "rspec"
 gem "rspec-its"
