@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/blake-education/vestal_versions/compare/v1.5.0...v1.6.0) (2025-05-19)
+
+
+### Features
+
+* add support for rails 8 ([d3bc164](https://github.com/blake-education/vestal_versions/commit/d3bc164a477770213d29f6b0f7a5eedb7f0f9c6c))
+
 ## [1.5.0](https://github.com/blake-education/vestal_versions/compare/v1.4.0...v1.5.0) (2024-08-23)
 
 
