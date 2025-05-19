@@ -43,7 +43,6 @@ GEM
       concurrent-ruby (~> 1.0)
     logger (1.7.0)
     minitest (5.25.5)
-    mutex_m (0.3.0)
     rake (13.2.1)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -99,15 +98,12 @@ PLATFORMS
 DEPENDENCIES
   activesupport (~> 8.0.0)
   appraisal
-  base64
-  bigdecimal
   logger
-  mutex_m
   rake
   rspec
   rspec-its
   simplecov
-  sqlite3
+  sqlite3 (>= 2.1)
   vestal_versions!
 
 BUNDLED WITH
