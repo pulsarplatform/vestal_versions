@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/blake-education/vestal_versions/compare/v1.6.0...v1.6.1) (2025-05-21)
+
+
+### Bug Fixes
+
+* update release ruby version ([83dbbd9](https://github.com/blake-education/vestal_versions/commit/83dbbd97d02466a2bae4e1ffa9435910aaa98421))
+
 ## [1.6.0](https://github.com/blake-education/vestal_versions/compare/v1.5.0...v1.6.0) (2025-05-19)
 
 
