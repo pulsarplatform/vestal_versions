@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.5.0](https://github.com/pulsarplatform/vestal_versions/compare/v1.6.1...v1.5.0) (2025-12-29)
+
+
+### Features
+
+* add release please for publishing packages on github ([7405dc1](https://github.com/pulsarplatform/vestal_versions/commit/7405dc155456f58c683fa74ff4828654b3dcdfcf))
+* add release-please to publishing to github packages ([efeec76](https://github.com/pulsarplatform/vestal_versions/commit/efeec76723d1774b4a165a33a920bc69328f4899))
+* add support for Rails 7.1 ([0495123](https://github.com/pulsarplatform/vestal_versions/commit/049512364ca5db0ce5b06bebdbe2656f03988b29))
+* add support for rails 8 ([d3bc164](https://github.com/pulsarplatform/vestal_versions/commit/d3bc164a477770213d29f6b0f7a5eedb7f0f9c6c))
+
+
+### Bug Fixes
+
+* update release ruby version ([83dbbd9](https://github.com/pulsarplatform/vestal_versions/commit/83dbbd97d02466a2bae4e1ffa9435910aaa98421))
+
+
+### Miscellaneous Chores
+
+* release 1.3.0 ([95dbeac](https://github.com/pulsarplatform/vestal_versions/commit/95dbeac933e391d3f0a0a254fb916fc198030f2e))
+* release 1.5.0 ([70c5662](https://github.com/pulsarplatform/vestal_versions/commit/70c5662874838276176145485314cffd7c44a4d1))
+
 ## [1.6.1](https://github.com/blake-education/vestal_versions/compare/v1.6.0...v1.6.1) (2025-05-21)
 
 
