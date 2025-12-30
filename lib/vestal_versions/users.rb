@@ -14,7 +14,7 @@ module VestalVersions
         # VestalVersions::Version#user to either return an ActiveRecord::Base object or a string,
         # depending on what is sent to the +user_with_name=+ method.
         def user
-          super || user_name
+          super.then { _1.is_a?(String) ? nil : _1 }
         end
 
         # Overrides the +user=+ method created by the polymorphic +belongs_to+ user association.
