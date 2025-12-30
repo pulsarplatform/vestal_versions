@@ -7,14 +7,14 @@ module VestalVersions
     included do
       attr_accessor :updated_by
       Version.class_eval do
-        belongs_to :user, :polymorphic => true
+        belongs_to :user, polymorphic: true, optional: true
 
         # Overrides the +user+ method created by the polymorphic +belongs_to+ user association. If
         # the association is absent, defaults to the +user_name+ string column. This allows
         # VestalVersions::Version#user to either return an ActiveRecord::Base object or a string,
         # depending on what is sent to the +user_with_name=+ method.
         def user
-          super.then { _1.is_a?(String) ? nil : _1 }
+          super || user_name
         end
 
         # Overrides the +user=+ method created by the polymorphic +belongs_to+ user association.
